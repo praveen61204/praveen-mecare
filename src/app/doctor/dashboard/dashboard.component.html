@@ -1,0 +1,114 @@
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <span>❤️ Me care</span>
+      <button class="menu-toggle">≡</button>
+    </div>
+    <nav class="main-menu">
+      <ul>
+        <li>
+          <a [class.active]="activeLink === 'dashboard'" (click)="setActiveLink('dashboard')">
+            <span class="icon">📊</span> Dashboard
+          </a>
+        </li>
+        <li>
+          <a [class.active]="activeLink === 'patients'" (click)="setActiveLink('patients')">
+            <span class="icon">👥</span> Patients
+          </a>
+        </li>
+        <li>
+          <a [class.active]="activeLink === 'appointments'" (click)="setActiveLink('appointments')">
+            <span class="icon">📅</span> Appointments
+          </a>
+        </li>
+        <li>
+          <a [class.active]="activeLink === 'prescriptions'" (click)="setActiveLink('prescriptions')">
+            <span class="icon">💊</span> Prescription
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-actions">
+      <div class="notification-container" (mouseleave)="showNotifications = false">
+        <button class="icon-btn notification-bell" (click)="toggleNotifications()">🔔</button>
+        <div class="notification-dropdown" [class.show]="showNotifications">
+          <ul class="notification-list">
+            <li *ngFor="let notification of notifications" class="notification-item">
+              {{ notification.message }} - {{ notification.time }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button class="icon-btn profile-btn">👤</button>
+    </div>
+    <div class="user-profile">
+      <span>Praveenkumar</span>
+      <button class="doctor-btn">Doctor</button>
+    </div>
+    <button class="logout-btn">Logout</button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="welcome-section">
+      <h1>Dashboard <span>Doctor Dashboard</span></h1>
+      <div class="welcome-message">
+        <h2>Good Morning, {{ doctorName }}</h2>
+        <button class="create-appointment-btn">Create Appointment</button>
+      </div>
+      <div class="doctor-image">
+        <img src="https://via.placeholder.com/200x300" alt="Doctor" />
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <div class="stat-card">
+        <h3>Achievements</h3>
+        <p>10 Awards <span class="stat-change">+5 this year</span></p>
+      </div>
+      <div class="stat-card">
+        <h3>Appointments Today</h3>
+        <p>15 <span class="stat-change">+30%</span></p>
+      </div>
+      <div class="stat-card">
+        <h3>Surgeons per Year</h3>
+        <div class="chart-placeholder">📊 (Graph Placeholder)</div>
+      </div>
+      <div class="stat-card">
+        <h3>Experience</h3>
+        <p>12 Years <span class="stat-change">+1 year</span></p>
+      </div>
+      <div class="stat-card">
+        <h3>Successful Treatments</h3>
+        <div class="percentage-sphere" [style.background]="'conic-gradient(#10b981 85%, #dc3545 0)'">85%</div>
+      </div>
+      <div class="stat-card">
+        <h3>Working Credits</h3>
+        <div class="percentage-sphere" [style.background]="'conic-gradient(#10b981 60%, #dc3545 0)'">60%</div>
+      </div>
+    </div>
+
+    <div class="charts-section">
+      <div class="chart-card">
+        <h3>Surgeons per Year 📊</h3>
+        <div class="chart-placeholder">📈 Surgeons Graph (Static)</div>
+        <select>
+          <option>2022</option>
+          <option>2023</option>
+          <option>2024</option>
+        </select>
+      </div>
+      <div class="chart-card">
+        <h3>Top Departments</h3>
+        <p>08:00 Benjamin Bruklin <span>Ongoing</span></p>
+        <p>08:00 Andrea Lalema</p>
+        <button class="show-all-btn">Show all</button>
+      </div>
+    </div>
+  </main>
+</div>

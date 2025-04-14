@@ -1,0 +1,304 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(135deg, #090a5a, #0a1045);
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  padding: 20px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.logo span {
+  font-size: 18px;
+  color: rgb(6, 6, 52);
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.main-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-menu li {
+  padding: 10px 20px;
+}
+
+.main-menu a {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.main-menu a.active {
+  background-color: #1b1162;
+  color: white;
+  border-radius: 5px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1b1162;
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  width: calc(100% - 250px); /* Matches the sidebar width */
+  left: 250px; /* Aligns with the right edge of the sidebar */
+  top: 0;
+  z-index: 10;
+  margin-bottom: 0; /* Remove bottom margin */
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.notification-container {
+  position: relative;
+  margin-right: 10px;
+}
+
+.notification-bell {
+  padding: 5px;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #0f0d0d;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+  display: none;
+  z-index: 100;
+}
+
+.notification-dropdown.show {
+  display: block;
+}
+
+.notification-list {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.notification-item {
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #1e3a8a;
+  border-bottom: 1px solid #eee;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item:hover {
+  background-color: #f1f5f9;
+}
+
+.profile-btn {
+  margin-left: 10px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: white; /* Match the image's white text */
+}
+
+.user-profile span {
+  font-size: 14px;
+  color: white;
+}
+
+.doctor-btn {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.logout-btn {
+  padding: 8px 15px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: auto; /* Pushes to the right */
+  margin-right: 40px;
+}
+
+.main-content {
+  margin-left: 250px; /* Matches the sidebar width exactly */
+  margin-top: 60px; /* Matches the header height */
+  padding: 20px 10px; /* Added padding to prevent overlap */
+  overflow-y: auto;
+  background-color: rgb(6, 6, 52);; /* Match the image background */
+}
+
+.welcome-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1b1162;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.welcome-section h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.welcome-section h1 span {
+  font-size: 16px;
+  color: #d1e7dd;
+}
+
+.welcome-message h2 {
+  margin: 0 0 10px 0;
+}
+
+.welcome-message p {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+}
+
+.create-appointment-btn {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.doctor-image img {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.stats-section,
+.charts-section {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-card,
+.chart-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 200px;
+  margin: 10px 0;
+  max-width: 200px;
+}
+
+.stat-card h3 {
+  font-size: 16px;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+
+.stat-card p {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.percentage-sphere {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  margin: 10px auto;
+}
+
+.stat-change {
+  font-size: 12px;
+  color: #28a745;
+}
+
+.stat-change[style*="color: #dc3545"] {
+  color: #dc3545;
+}
+
+.chart-placeholder {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  margin-top: 10px;
+}
+
+select {
+  padding: 5px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.show-all-btn {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}

@@ -1,0 +1,176 @@
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <span>❤️ Me care</span>
+      <button class="menu-toggle">≡</button>
+    </div>
+    <nav class="main-menu">
+      <ul>
+        <li>
+          <a [class.active]="activeLink === 'dashboard'" (click)="setActiveLink('dashboard')">
+            <span class="icon">📊</span> Dashboard
+          </a>
+        </li>
+        <li>
+          <a [class.active]="activeLink === 'patients'" (click)="setActiveLink('patients')">
+            <span class="icon">👥</span> Patients
+          </a>
+        </li>
+        <li>
+          <a [class.active]="activeLink === 'appointments'" (click)="setActiveLink('appointments')">
+            <span class="icon">📅</span> Appointments
+          </a>
+        </li>
+        <li>
+          <a [class.active]="activeLink === 'prescription'" (click)="setActiveLink('prescriptions')">
+            <span class="icon">💊</span> Prescription
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+
+<!-- Header -->
+<header class="header">
+  <div class="header-actions">
+    <div class="notification-container" (mouseleave)="showNotifications = false">
+      <button class="icon-btn notification-bell" (click)="toggleNotifications()">🔔</button>
+      <div class="notification-dropdown" [class.show]="showNotifications">
+        <ul class="notification-list">
+          <li *ngFor="let notification of notifications" class="notification-item">
+            {{ notification.message }} - {{ notification.time }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button class="icon-btn profile-btn">👤</button>
+  </div>
+  <div class="user-profile">
+    <span>Praveenkumar</span>
+    <button class="doctor-btn">Doctor</button>
+  </div>
+  <button class="logout-btn">Logout</button>
+</header>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="patients-section">
+      <h1>Patients</h1>
+      <div class="filter-bar">
+        <div class="date-filter">
+          <input type="date" value="2024-04-23" />
+          <span>Patient: Robert</span> <button class="clear-btn">×</button>
+          <span>Provider: Stuart</span> <button class="clear-btn">×</button>
+        </div>
+        <button class="add-visit-btn">Add Visit</button>
+      </div>
+
+      <div class="patients-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient ID</th>
+              <th>Patient Name</th>
+              <th>Age</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let patient of patients">
+              <td>{{ patient.id }}</td>
+              <td>{{ patient.name }}</td>
+              <td>{{ patient.age }}</td>
+              <td>{{ patient.phone }}</td>
+              <td>{{ patient.email }}</td>
+              <td>
+                <button class="action-btn" (click)="showPatientDetails(patient)">👁️</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Patient Details View -->
+      <div class="patient-details-view" *ngIf="selectedPatient">
+        <div class="details-wrapper">
+          <!-- Header with Photo and Name -->
+          <div class="details-header">
+            <img [src]="selectedPatient.photo" alt="Patient Photo" class="patient-photo" />
+            <div class="patient-info-header">
+              <h2>{{ selectedPatient.name}}</h2>
+              <p>ID: {{ selectedPatient.id }}</p>
+            </div>
+            <button class="close-btn" (click)="closePatientDetails()">×</button>
+          </div>
+
+          <!-- Sidebar Navigation -->
+          <aside class="details-sidebar">
+            <ul>
+              <li>
+                <a [class.active]="activeTab === 'patient-information'" (click)="setActiveTab('patient-information')">
+                  <span class="icon">ℹ️</span> Patient Information
+                </a>
+              </li>
+              <li>
+                <a [class.active]="activeTab === 'appointment-history'" (click)="setActiveTab('appointment-history')">
+                  <span class="icon">📅</span> Appointment History
+                </a>
+              </li>
+              <li>
+                <a [class.active]="activeTab === 'next-treatment'" (click)="setActiveTab('next-treatment')">
+                  <span class="icon">⏭️</span> Next Treatment
+                </a>
+              </li>
+              <li>
+                <a [class.active]="activeTab === 'medical-record'" (click)="setActiveTab('medical-record')">
+                  <span class="icon">📋</span> Medical Record
+                </a>
+              </li>
+            </ul>
+          </aside>
+
+          <!-- Main Content -->
+          <div class="details-content">
+            <div *ngIf="activeTab === 'patient-information'">
+              <div class="card">
+                <h3>Patient Data</h3>
+                <div class="detail-grid">
+                  <div class="detail-item"><strong>Age:</strong> {{ selectedPatient.age }}</div>
+                  <div class="detail-item"><strong>Gender:</strong> {{ selectedPatient.gender }}</div>
+                  <div class="detail-item"><strong>Email:</strong> {{ selectedPatient.email }}</div>
+                  <div class="detail-item"><strong>Mobile:</strong> {{ selectedPatient.phone }}</div>
+                  <div class="detail-item"><strong>Address:</strong> {{ selectedPatient.address }}</div>
+                </div>
+              </div>
+              <div class="card">
+                <h3>Medical Data <span>(Last Update: {{ selectedPatient.lastUpdateMedical }})</span></h3>
+                <div class="detail-grid">
+                  <div class="detail-item"><strong>Blood Pressure:</strong> {{ selectedPatient.bp }}</div>
+                  <div class="detail-item"><strong>Heart Rate:</strong> {{ selectedPatient.heartRate }}</div>
+                  <div class="detail-item"><strong>Sickness:</strong> {{ selectedPatient.particularSickness }}</div>
+                  <div class="detail-item"><strong>Allergies:</strong> {{ selectedPatient.allergic }}</div>
+                </div>
+              </div>
+              <div class="card">
+                <h3>Oral Check <span>(Last Update: {{ selectedPatient.lastUpdateOral }})</span></h3>
+                <div class="detail-grid">
+                  <div class="detail-item"><strong>Occlusi:</strong> {{ selectedPatient.occlusi }}</div>
+                  <div class="detail-item"><strong>Torus Palatinus:</strong> {{ selectedPatient.torusPalatinus }}</div>
+                  <div class="detail-item"><strong>Diastema:</strong> {{ selectedPatient.diastema }}</div>
+                  <div class="detail-item"><strong>Anomalous Teeth:</strong> {{ selectedPatient.anomalousTeeth }}</div>
+                </div>
+              </div>
+            </div>
+            <!-- Placeholder for other tabs -->
+            <div *ngIf="activeTab === 'appointment-history'"><p>Appointment History content here</p></div>
+            <div *ngIf="activeTab === 'next-treatment'"><p>Next Treatment content here</p></div>
+            <div *ngIf="activeTab === 'medical-record'"><p>Medical Record content here</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
